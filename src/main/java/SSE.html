@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Spring SSE Push Notifications</title>
+<script>
+	function initialize() {
+		const eventSource1 = new EventSource('http://localhost:8081/notification/subscribe/announcement');
+		
+		eventSource1.onmessage = e => {
+			const msg = e.data;
+			document.getElementById("announcement").innerHTML = msg;
+		};
+		eventSource1.onopen = e => console.log('open');
+		eventSource1.onerror = e => {
+			if (e.readyState == EventSource.CLOSED) {
+				console.log('close');
+			}
+			else {
+				console.log(e);
+			}
+		};
+		eventSource1.addEventListener('second', function(e) {
+			console.log('second', e.data);
+		}, false);
+		
+		const eventSource2 = new EventSource('http://localhost:8081/notification/subscribe/event');
+		
+		eventSource2.onmessage = e => {
+			const msg = e.data;
+			document.getElementById("event").innerHTML = msg;
+		};
+		eventSource2.onopen = e => console.log('open');
+		eventSource2.onerror = e => {
+			if (e.readyState == EventSource.CLOSED) {
+				console.log('close');
+			}
+			else {
+				console.log(e);
+			}
+		};
+		eventSource2.addEventListener('second', function(e) {
+			console.log('second', e.data);
+		}, false);
+	}
+	window.onload = initialize;
+</script>
+</head>
+<body>
+	<div id="announcement"></div>
+	<div id="event"></div>
+</body>
+</html>
