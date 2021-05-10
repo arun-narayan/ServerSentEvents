@@ -16,10 +16,6 @@ dependencies {
 
 	implementation "org.springframework.boot:spring-boot-starter-web"
 	
-	implementation "javax.websocket:javax.websocket-client-api:1.1"
-    implementation "org.glassfish.tyrus:tyrus-client:$version_tyrus"
-    implementation "org.glassfish.tyrus:tyrus-server:$version_tyrus"
-    
     implementation "org.apache.httpcomponents:httpclient:$version_httpclient"
 	
 	// to convert our Java object to/from JSON
