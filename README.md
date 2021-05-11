@@ -27,3 +27,5 @@ A very basic service for sending real time events to the client making use of Se
 - junit - v4.12  
   
   
+## Reference Links
+https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
