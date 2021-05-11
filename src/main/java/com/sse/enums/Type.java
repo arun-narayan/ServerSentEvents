@@ -1,17 +1,17 @@
-package com.sse.entity;
+package com.sse.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notification {
+public enum Type {
 
-	private String type;
-	private String message;
+	ANNOUNCEMENT("announcement"),
+	EVENT("event"),
+	UNKNOWN("Unknown");
 	
+	private String displayName;
 }

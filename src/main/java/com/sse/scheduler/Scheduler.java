@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.sse.entity.Notification;
-import com.sse.enums.NotificationTypeEnum;
+import com.sse.enums.Type;
 import com.sse.service.NotificationService;
 
 import lombok.extern.log4j.Log4j2;
@@ -28,17 +27,15 @@ public class Scheduler {
 	
 	@Scheduled(fixedRate = 20000)
 	public void periodicNotificationForEvents() {
-		log.debug("Sending notification for {}", NotificationTypeEnum.EVENT.getDisplayName());
-		Notification notification = new Notification(NotificationTypeEnum.EVENT.getDisplayName(), "Event " + events);
-		service.sendNotification(notification);
+		log.debug("Sending notification for {}", Type.EVENT.getDisplayName());
+		service.sendNotification(Type.EVENT.getDisplayName(), "Event " + events);
 		events++;
 	}
 	
 	@Scheduled(fixedRate = 10000)
 	public void periodicNotificationForAnnouncments() {
-		log.debug("Sending notification for {}", NotificationTypeEnum.ANNOUNCEMENT.getDisplayName());
-		Notification notification = new Notification(NotificationTypeEnum.ANNOUNCEMENT.getDisplayName(), "Announcement " + announcements);
-		service.sendNotification(notification);
+		log.debug("Sending notification for {}", Type.ANNOUNCEMENT.getDisplayName());
+		service.sendNotification(Type.ANNOUNCEMENT.getDisplayName(), "Announcement " + announcements);
 		announcements++;
 	}
 
